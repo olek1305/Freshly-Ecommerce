@@ -2,34 +2,22 @@
 
 @section('content')
     <main role="main" class="container">
-        <h1 class="mt-5 text-danger">Home</h1>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Cum pariatur ratione quaerat vero a, ullam reiciendis earum distinctio nihil exercitationem quidem neque odit aliquid quasi esse,
-        repudiandae, adipisci non placeat.
-        <div class="row mt-5">
-            @foreach($blogs as $blog)
-                @if($blog['status'] === 1)
-                    <div class="col md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2>{{$blog['title']}}</h2>
-                                <p>{{$blog['body']}}</p>
-                            </div>
+        <img src="{{ asset('public/storage/images/new_image.jpg') }}" alt="">
+        <div class="col-md-4 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{route('upload-file')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="">Upload</label>
+                            <input type="file" name="image" class="form-control">
                         </div>
-                    </div>
-                @else
-                    <div class="col md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2>{{$blog['title']}}</h2>
-                                <p>{{$blog['body']}}</p>
-                                <div class="btn-sm btn-warning">Pending</div>
-                            </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success mt-2">Submit</button>
                         </div>
-                    </div>
-                @endif
-
-            @endforeach
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
 @endsection

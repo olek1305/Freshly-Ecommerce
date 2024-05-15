@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-use Barryvdh\Reflection\DocBlock\Tag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Address extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'description',
-        'status',
-        'publish_date',
+        'address',
         'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
