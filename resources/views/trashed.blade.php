@@ -7,11 +7,10 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>All Posts</h4>
+                        <h4>Trashed Posts</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <a class="btn btn-success" href="{{ route('posts.create') }}">Create</a>
-                        <a class="btn btn-warning" href="">Trashed</a>
+                        <a class="btn btn-success mx-1" href="{{ route('posts.index') }}">Back</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +39,7 @@
                         <td>2-5-21</td>
                         <td>
                             <a class="btn btn-sm btn-success" href="">Show</a>
-                            <a class="btn btn-sm btn-primary" href="">Edit</a>
+                            <a class="btn btn-sm btn-primary" href="{{ route('posts.edit') }}">Edit</a>
                             <a class="btn btn-sm btn-danger" href="">Delete</a>
                         </td>
                     </tr>
