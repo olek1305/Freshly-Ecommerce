@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $posts = Post::all();
+        return view('index', compact('posts'));
     }
 
     /**
@@ -19,7 +22,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view ('create');
+        $categories = Category::all();
+
+        return view ('create', compact('categories'));
     }
 
     /**
@@ -27,7 +32,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'title' => 'required|max:255',
+            'description' => 'required|min:5',
+            'category_id' => 'required|integer',
+        ]);
+
+        $fileName = time().'.'.request()->image->getClientOriginalExtension();
+        $filePath = request()->image->storeAs('uploads', $fileName);
+
+        $post = new Post();
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->category_id = $request->category_id;
+        $post->image = 'storage/' . $filePath;
+        $post->save();
+
+        return redirect()->route('posts.index');
+
     }
 
     /**
