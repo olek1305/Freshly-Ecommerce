@@ -17,20 +17,6 @@
             <div class="card-header">
                 <table class="table table-striped">
                     <tbody>
-{{--                        <tr>--}}
-{{--                            <th scope="row">{{ $post->id }}</th>--}}
-{{--                            <td><img src="{{ asset($post->image) }}" alt="" width="80"></td>--}}
-{{--                            <td>{{ $post->title }}</td>--}}
-{{--                            <td>{{ $post->description }}</td>--}}
-{{--                            <td>{{ $post->category_id }}</td>--}}
-{{--                            <td>{{ date('d-m-Y'), strtotime($post->created_at) }}</td>--}}
-{{--                            <td>--}}
-{{--                                <a class="btn btn-sm btn-success" href="">Show</a>--}}
-{{--                                <a class="btn btn-sm btn-primary" href="{{ route('posts.edit', $post->id) }}">Edit</a>--}}
-{{--                                <a class="btn btn-sm btn-danger" href="">Delete</a>--}}
-{{--                            </td>--}}
-{{--                        </tr>--}}
-
                             <tr>
                                 <td>Id</td>
                                 <td>{{ $post->id }}</td>
@@ -49,7 +35,7 @@
                             </tr>
                             <tr>
                                 <td>Category</td>
-                                <td>{{ $post->category_id }}</td>
+                                <td>{{ $post->category->name }}</td>
                             </tr>
                             <tr>
                                 <td>Publish Date</td>
