@@ -37,13 +37,15 @@
                             <td>{{ $post->category_id }}</td>
                             <td>{{ date('d-m-Y'), strtotime($post->created_at) }}</td>
                             <td>
-                                <a class="btn btn-sm btn-success" href="{{ route('posts.show', $post->id) }}">Show</a>
-                                <a class="btn btn-sm btn-primary" href="{{ route('posts.edit', $post->id) }}">Edit</a>
-                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                                <div class="d-flex">
+                                    <a class="btn btn-sm btn-success" href="{{ route('posts.restore', $post->id) }}">Restore</a>
+
+                                    <form action="" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
