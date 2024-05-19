@@ -134,4 +134,15 @@ class PostController extends Controller
 
         return redirect()->route('posts.trashed');
     }
+
+    public function forceDelete($id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+
+        File::delete(public_path($post->image));
+
+        $post->forceDelete();
+
+        return redirect()->route('posts.trashed');
+    }
 }

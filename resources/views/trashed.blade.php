@@ -40,7 +40,7 @@
                                 <div class="d-flex">
                                     <a class="btn btn-sm btn-success" href="{{ route('posts.restore', $post->id) }}">Restore</a>
 
-                                    <form action="" method="POST">
+                                    <form action="{{ route('posts.force_delete', $post->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
