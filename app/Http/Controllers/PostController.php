@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('authCheck2')->only('create');
+//        $this->middleware('authCheck2')->only('create');
     }
 
     /**
