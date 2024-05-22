@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Mail\OrderShipped;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +53,31 @@ Route::get('send-mail', function() {
 
     Mail::send(new OrderShipped);
     dd('success');
+});
+
+Route::get('get-session', function (Request $request) {
+//    $data = session()->all();
+
+        $data = $request->session()->all();
+//        $data = $request->session()->get('_token');
+
+    dd($data);
+});
+
+Route::get('save-session', function (Request $request) {
+//    $data = $request->session()->put('user_status', 'logged_in');
+    session(['user_ip' => $request->ip()]);
+    return redirect('get-session');
+});
+
+Route::get('destroy-session', function (Request $request) {
+//    $request->session()->forget('user_ip');
+    $request->session()->flush();
+
+    return redirect('get-session');
+});
+
+Route::get('flash-session', function (Request $request) {
+    $request->session()->flash('status', 'true');
+    return redirect('get-session');
 });
