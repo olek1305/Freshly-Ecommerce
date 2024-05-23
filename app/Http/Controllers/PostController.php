@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use File;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -19,7 +20,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(5);
+        $posts = Cache::remember('posts-page-'.request('page', 1),60*3 ,function () {
+            return Post::with('category')->paginate(5);
+        });
+
+//        $posts = Cache::rememberForever('posts', function () {
+//            return Post::with('category')->paginate(5);
+//        });
 
         return view('index', compact('posts'));
     }
