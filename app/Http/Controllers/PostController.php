@@ -36,6 +36,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        $this->authorize('create_post');
         $categories = Category::all();
 
         return view ('create', compact('categories'));
@@ -81,6 +82,7 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('edit_post');
         $post = Post::findOrFail($id);
         $categories = Category::all();
 
@@ -127,6 +129,7 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('delete_post');
         $post = Post::findOrFail($id);
         $post->delete();
 
@@ -150,10 +153,10 @@ class PostController extends Controller
 
     public function forceDelete($id)
     {
+        $this->authorize('delete_post');
+
         $post = Post::onlyTrashed()->findOrFail($id);
-
         File::delete(public_path($post->image));
-
         $post->forceDelete();
 
         return redirect()->route('posts.trashed');
