@@ -10,7 +10,9 @@
                         <h4>All Posts</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <a class="btn btn-success" href="{{ route('posts.create') }}">Create</a>
+                        @can('create_post')
+                            <a class="btn btn-success" href="{{ route('posts.create') }}">Create</a>
+                        @endcan
                         <a class="btn btn-warning" href="{{ route('posts.trashed') }}">Trashed</a>
                     </div>
                 </div>
