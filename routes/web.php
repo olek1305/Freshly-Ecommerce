@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Jobs\SendMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,4 +42,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('user-data', function() {
   return auth()->user();
+});
+
+Route::get('send-mail', function () {
+
+    SendMail::dispatch();
+    dd('mail has been sent1');
 });
