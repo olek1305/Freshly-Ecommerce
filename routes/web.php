@@ -1,9 +1,7 @@
 <?php
 
-use App\Events\UserRegisterd;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Jobs\SendMail;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +20,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $users = User::paginate(10);
+    return view('dashboard', compact('users'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -32,27 +31,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/posts/trash', [PostController::class, 'trashed'])->name('posts.trashed');
-    Route::get('/posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
-    Route::delete('/posts/{id}/force-delete', [PostController::class, 'forceDelete'])->name('posts.force_delete');
-
-    Route::resource('posts', PostController::class);
-});
-
-Route::get('user-data', function() {
-  return auth()->user();
-});
-
-Route::get('send-mail', function () {
-    SendMail::dispatch();
-    dd('mail has been sent1');
-});
-
-Route::get('user-register', function () {
-    $email = Auth::user()->email;
-
-    event(new UserRegisterd($email));
-    dd('message sent');
-});
