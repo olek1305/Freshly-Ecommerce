@@ -4,6 +4,8 @@ use App\DataTables\UsersDataTable;
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,14 @@ Route::get('user/{id}/edit', function ($id) {
 Route::get('/dashboard', function (UsersDataTable $dataTable) {
     return $dataTable->render('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/image', function () {
+    $manager = new ImageManager(new Driver());
+    $image = $manager->read('car.jpg');
+    $image->resize(1001, 1001);
+    $image = $image->blur(20);
+    $image->save('car.jpg');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
