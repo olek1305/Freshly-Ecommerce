@@ -40,8 +40,12 @@ Route::get('/image', function () {
 });
 
 Route::get('shop', [CartController::class, 'shop'])->name('shop');
-
 Route::get('cart', [CartController::class, 'cart'])->name('cart');
+Route::get('add-to-cart/{product_id}', [CartController::class, 'addToCart'])->name('addToCart');
+
+Route::get('qty-increment/{rowId}', [CartController::class, 'qtyIncrement'])->name('qtyIncrement');
+Route::get('qty-decrement/{rowId}', [CartController::class, 'qtyDecrement'])->name('qtyDecrement');
+Route::get('remove-product/{rowId}', [CartController::class, 'removeProduct'])->name('removeProduct');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
