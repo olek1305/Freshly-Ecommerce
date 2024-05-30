@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,29 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('create-role', function() {
+//    $role = Role::create(['name' => 'publisher']);
+//
+//    return $role;
+
+//    $permission = Permission::create(['name' => 'edit articles']);
+//
+//    return $permission;
+
+    $user = auth()->user();
+//    $user->assignRole('writer');
+//    $user->givePermissionTo('edit articles');
+
+
+
+    if($user->can('edit articles')) {
+        return 'user have permission';
+    } else {
+        return 'user dont have permission';
+    }
+
 });
 
 require __DIR__.'/auth.php';
