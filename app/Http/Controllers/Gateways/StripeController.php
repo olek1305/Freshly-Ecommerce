@@ -34,12 +34,12 @@ class StripeController extends Controller
         return redirect()->away($response->url);
     }
 
-    public function success(Request $request)
+    public function success()
     {
         return 'Thank you for your purchase';
     }
 
-    public function cancel(Request $request)
+    public function cancel()
     {
         return 'Payment cancelled';
     }
