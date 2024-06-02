@@ -63,7 +63,3 @@ Route::get('paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.c
 Route::post('stripe/payment', [StripeController::class, 'payment'])->name('stripe.payment');
 Route::get('stripe/success', [StripeController::class, 'success'])->name('stripe.success');
 Route::get('stripe/cancel', [StripeController::class, 'cancel'])->name('stripe.cancel');
-
-Route::post('razorpay/payment', [RazorpayController::class, 'payment'])->name('razorpay.payment');
-Route::get('razorpay/success', [RazorpayController::class, 'success'])->name('razorpay.success');
-Route::get('razorpay/cancel', [RazorpayController::class, 'cancel'])->name('razorpay.cancel');
