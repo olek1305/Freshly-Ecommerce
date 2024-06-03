@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Gateways\MollieController;
 use App\Http\Controllers\Gateways\PaypalController;
 use App\Http\Controllers\Gateways\RazorpayController;
 use App\Http\Controllers\Gateways\StripeController;
@@ -63,3 +64,6 @@ Route::get('paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.c
 Route::post('stripe/payment', [StripeController::class, 'payment'])->name('stripe.payment');
 Route::get('stripe/success', [StripeController::class, 'success'])->name('stripe.success');
 Route::get('stripe/cancel', [StripeController::class, 'cancel'])->name('stripe.cancel');
+
+Route::post('mollie/payment', [MollieController::class, 'payment'])->name('mollie.payment');
+Route::get('mollie/success', [MollieController::class, 'payment'])->name('mollie.success');
