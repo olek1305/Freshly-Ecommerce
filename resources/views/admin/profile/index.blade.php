@@ -30,11 +30,11 @@
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required="">
+                                        <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}">
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label>Email</label>
-                                        <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required="">
+                                        <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}">
                                     </div>
                                 </div>
                             </div>
@@ -47,11 +47,6 @@
 
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
-                        @if($errors->any())
-                            @foreach($errors->all() as $error)
-                                <span class="alert alert-danger">{{ $error }}</span>
-                            @endforeach
-                        @endif
                         <form method="post" class="needs-validation" novalidate="" action="{{ route('admin.password.update') }}"
                               enctype="multipart/form-data">
                             @csrf
