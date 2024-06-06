@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus
-                                           value="{{ old('email') }}" autocomplete="username">
+                                           value="{{ old('email') }}">
                                     @if($errors->has('email'))
                                         <code>{{ $errors->first('email') }}</code>
                                     @endif
@@ -70,7 +70,7 @@
 
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember_me">
+                                        <input id="remember_me" type="checkbox" name="remember" class="custom-control-input" tabindex="3">
                                         <label class="custom-control-label" for="remember_me">{{ __('Remember me') }}</label>
                                     </div>
                                 </div>
