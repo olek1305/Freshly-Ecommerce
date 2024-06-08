@@ -101,6 +101,15 @@
 
     <!--main/custom js-->
     <script src="{{ asset('frontend/assets/js/main.js')}}"></script>
+    <script>
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                @php
+                    flash()->addError($error);
+                @endphp
+            @endforeach
+        @endif
+    </script>
 
 </body>
 
