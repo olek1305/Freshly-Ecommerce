@@ -43,27 +43,31 @@
                                     </form>
                                 <div class="wsus__dash_pass_change mt-2">
                                     <div class="row">
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="wsus__dash_pro_single">
-                                                <i class="fas fa-unlock-alt"></i>
-                                                <input type="password" placeholder="Current Password">
+                                        <h4>Update password</h4>
+                                        <form action="{{ route('user.password.update') }}" method="POST">
+                                            @csrf
+                                            <div class="col-xl-4 col-md-6">
+                                                <div class="wsus__dash_pro_single">
+                                                    <i class="fas fa-unlock-alt"></i>
+                                                    <input type="password" name="current_password" placeholder="Current password">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="wsus__dash_pro_single">
-                                                <i class="fas fa-lock-alt"></i>
-                                                <input type="password" placeholder="New Password">
+                                            <div class="col-xl-4 col-md-6">
+                                                <div class="wsus__dash_pro_single">
+                                                    <i class="fas fa-lock-alt"></i>
+                                                    <input type="password" name="password" placeholder="New password">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class="wsus__dash_pro_single">
-                                                <i class="fas fa-lock-alt"></i>
-                                                <input type="password" placeholder="Confirm Password">
+                                            <div class="col-xl-4">
+                                                <div class="wsus__dash_pro_single">
+                                                    <i class="fas fa-lock-alt"></i>
+                                                    <input type="password" name="password_confirmation" placeholder="Confirm password">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <button class="common_btn" type="submit">upload</button>
-                                        </div>
+                                            <div class="col-xl-12">
+                                                <button class="common_btn" type="submit">upload</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
