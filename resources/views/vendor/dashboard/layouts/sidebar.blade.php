@@ -19,10 +19,5 @@
                 <a href="{{ route('logout') }}"><i class="far fa-sign-out-alt"></i>{{ __('Log Out') }}</a>
             </form>
         </li>
-
-
-
->
-
     </ul>
 </div>
