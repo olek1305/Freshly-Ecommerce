@@ -59,7 +59,7 @@ class SliderController extends Controller
 
         flash('Created Successfully!');
 
-        return redirect()->back();
+        return redirect()->route('admin.slider.index');
     }
 
     /**
