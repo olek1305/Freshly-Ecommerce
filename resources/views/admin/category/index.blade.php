@@ -7,8 +7,6 @@
             <h1>Category</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Components</a></div>
-                <div class="breadcrumb-item"></div>
             </div>
         </div>
 
@@ -39,16 +37,16 @@
         $(document).ready(function() {
             $('body').on('click', '.change-status', function() {
                 let isChecked = $(this).is(':checked');
-                console.log(isChecked)
                 let id = $(this).data('id')
 
                 $.ajax({
                     url: "{{ route('admin.category.change-status') }}",
                     method: 'PUT',
-                    data: {
+                    contentType: 'application/json',
+                    data: JSON.stringify({
                         isChecked: isChecked,
                         id: id
-                    },
+                    }),
                     success: function(data) {
                         Swal.fire({
                             title: 'Success',
