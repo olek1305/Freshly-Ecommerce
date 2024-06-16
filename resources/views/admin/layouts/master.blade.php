@@ -128,7 +128,8 @@
                                 if(data.status === 'success') {
                                     Swal.fire(
                                         'Deleted!',
-                                        data.message
+                                        data.message,
+                                        'success'
                                     )
                                     setTimeout(function() {
                                         window.location.reload();
@@ -136,7 +137,8 @@
                                 } else if (data.status === 'error') {
                                     Swal.fire(
                                         'Cant Delete',
-                                        data.message
+                                        data.message,
+                                        'error'
                                     )
                                 }
 
