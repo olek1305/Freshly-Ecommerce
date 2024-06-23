@@ -82,7 +82,7 @@ class ProductController extends Controller
         $product->seo_description = $request->seo_description;
         $product->save();
 
-        toastr('Created Successfully!', 'success');
+        flash('Created Successfully!');
 
         return redirect()->route('admin.products.index');
 

@@ -108,7 +108,7 @@ class ChildCategoryController extends Controller
         $childCategory->status = $request->status;
         $childCategory->save();
 
-        toastr('Update Successfully!', 'success');
+        flash('Update Successfully!', 'success');
 
         return redirect()->route('admin.child-category.index');
     }
