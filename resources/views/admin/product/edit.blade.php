@@ -20,7 +20,7 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label>Preview</label>
-                                    <img src="{{ asset($product->thumb_image) }}">
+                                    <img alt="" src="{{ asset($product->thumb_image) }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Image</label>
@@ -177,7 +177,7 @@
                 let id = $(this).val();
                 $.ajax({
                     method: 'GET',
-                    url: "{{route('admin.product.get-subcategories')}}",
+                    url: "{{ route('admin.product.get-subcategories') }}",
                     data: {
                         id:id
                     },
@@ -200,7 +200,7 @@
                 let id = $(this).val();
                 $.ajax({
                     method: 'GET',
-                    url: "{{route('admin.product.get-child-categories')}}",
+                    url: "{{ route('admin.product.get-child-categories') }}",
                     data: {
                         id:id
                     },
