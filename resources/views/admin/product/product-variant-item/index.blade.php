@@ -10,7 +10,6 @@
             <a href="{{route('admin.products-variant.index', ['product' => $product->id])}}" class="btn btn-primary">Back</a>
           </div>
           <div class="section-body">
-
             <div class="row">
               <div class="col-12">
                 <div class="card">
@@ -23,11 +22,9 @@
                   <div class="card-body">
                     {{ $dataTable->table() }}
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
         </section>
 

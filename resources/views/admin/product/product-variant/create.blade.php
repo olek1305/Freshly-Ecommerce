@@ -21,9 +21,11 @@
                                     <label>Name</label>
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                 </div>
+
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="product" value="{{ request()->product }}">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="inputStatus">Status</label>
                                     <select id="inputStatus" class="form-control" name="status" >
@@ -31,6 +33,7 @@
                                         <option value="0">Inactive</option>
                                     </select>
                                 </div>
+
                                 <button type="submit" class="btn btn-primary">Create</button>
                             </form>
                         </div>
