@@ -87,7 +87,6 @@ class ProductController extends Controller
         flash('Created Successfully!');
 
         return redirect()->route('admin.products.index');
-
     }
 
     /**
@@ -202,9 +201,8 @@ class ProductController extends Controller
     }
 
     /**
-     * Get all product sub categores
+     * Get all product sub categories
      */
-
     public function getSubCategories(Request $request)
     {
         $subCategories = SubCategory::where('category_id', $request->id)->get();
@@ -212,11 +210,13 @@ class ProductController extends Controller
         return $subCategories;
     }
 
+    /**
+     * Get all product child categories
+     */
     public function getChildCategories(Request $request)
     {
         $childCategories = ChildCategory::where('sub_category_id', $request->id)->get();
 
         return $childCategories;
     }
-
 }
