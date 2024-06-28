@@ -6,7 +6,6 @@
         <div class="section-header">
             <h1>Product</h1>
         </div>
-
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
@@ -39,6 +38,7 @@
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="inputState">Sub Category</label>
@@ -48,6 +48,7 @@
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="inputState">Child Category</label>
@@ -151,11 +152,9 @@
                                 <button type="submit" class="btn btn-primary">Create</button>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 @endsection
