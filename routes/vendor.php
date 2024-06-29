@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\VendorProfileController;
 use App\Http\Controllers\Backend\VendorShopProfileController;
 use Illuminate\Support\Facades\Route;
@@ -16,3 +17,9 @@ Route::post('profile/update/password', [VendorProfileController::class, 'updateP
 
 /** Vendor Shop profile Route */
 Route::resource('shop-profile', VendorShopProfileController::class);
+
+/** Product Route */
+Route::get('product/get-subcategories', [VendorProductController::class, 'getSubCategories'])->name('product.get-subcategories');
+Route::get('product/get-child-categories', [VendorProductController::class, 'getChildCategories'])->name('product.get-child-categories');
+Route::put('product/change-status', [VendorProductController::class, 'changeStatus'])->name('product.change-status');
+Route::resource('products', VendorProductController::class);
