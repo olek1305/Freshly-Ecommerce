@@ -6,6 +6,7 @@
     <a href="{{ route('vendor.dashboard') }}" class="dash_logo"><img src="{{ asset('frontend/assets/images/logo.png') }}" alt="logo" class="img-fluid"></a>
     <ul class="dashboard_link">
         <li><a class="active" href="{{ route('vendor.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
+        <li><a href="{{ route('vendor.products.index') }}"><i class="fas fa-tachometer"></i>Products</a></li>
         <li><a href="{{ route('vendor.shop-profile.index') }}"><i class="far fa-user"></i>Shop Profile</a></li>
         <li><a href="{{ route('vendor.profile') }}"><i class="far fa-user"></i>My Profile</a></li>
 
