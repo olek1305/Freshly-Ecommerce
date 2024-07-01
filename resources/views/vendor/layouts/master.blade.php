@@ -109,6 +109,8 @@
         <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
         <!--date picker js-->
         <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+        <!--sweet alert-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!--main/custom js-->
         <script src="{{ asset('frontend/assets/js/main.js')}}"></script>
@@ -127,7 +129,6 @@
         <!-- Dynamic delete alert -->
         <script>
             $(document).ready(function() {
-
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

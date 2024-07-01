@@ -9508,7 +9508,20 @@ a:not([href]):not([class]):hover {
     margin-bottom: 10px;
 }
 
+#flexSwitchCheckDefault {
+    height: 18px !important;;
+    width: 50px !important;;
+}
 
 .delete-item {
-    margin-left: 4px;
+    margin-left: 4px !important;
+}
+
+.btn-space-right {
+    margin-right: 3px;
+    color: #fff;
+}
+
+.btn-space-top {
+    padding-top: 3px;
 }
