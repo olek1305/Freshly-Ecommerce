@@ -3,7 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\ProductImageGallery;
-use App\Models\VendorProductImageGallery;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
