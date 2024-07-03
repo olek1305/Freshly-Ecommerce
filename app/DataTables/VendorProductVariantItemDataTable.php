@@ -31,23 +31,21 @@ class VendorProductVariantItemDataTable extends DataTable
                 return $editBtn.$deleteBtn;
             })
             ->addColumn('status', function($query){
-                if($query->status === 1){
-                    $button = '<label class="custom-switch mt-2">
-                        <input type="checkbox" checked name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status" >
-                        <span class="custom-switch-indicator"></span>
-                    </label>';
-                }else {
-                    $button = '<label class="custom-switch mt-2">
-                        <input type="checkbox" name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
-                        <span class="custom-switch-indicator"></span>
-                    </label>';
+                if($query->status == 1){
+                    $button = '<div class="form-check form-switch">
+                    <input checked class="form-check-input change-status" type="checkbox"
+                    id="flexSwitchCheckDefault" data-id="'.$query->id.'"></div>';
+                } else {
+                    $button = '<div class="form-check form-switch">
+                    <input class="form-check-input change-status" type="checkbox"
+                    id="flexSwitchCheckDefault" data-id="'.$query->id.'"></div>';
                 }
                 return $button;
             })
             ->addColumn('is_default', function($query){
                 if($query->is_default === 1){
                     return '<i class="badge bg-success">default</i>';
-                }else {
+                } else {
                     return '<i class="badge bg-danger">no</i>';
                 }
             })
