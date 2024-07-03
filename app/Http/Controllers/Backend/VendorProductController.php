@@ -212,6 +212,15 @@ class VendorProductController extends Controller
         return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
 
+    public function changeStatus(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $product->status = $request->isChecked ? 1 : 0;
+        $product->save();
+
+        return response(['message' => 'Status has been updated!']);
+    }
+
     /**
      * Get all product sub categories
      */
