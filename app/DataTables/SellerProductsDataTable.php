@@ -13,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductDataTable extends DataTable
+class SellerProductsDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -70,7 +70,16 @@ class ProductDataTable extends DataTable
                 }
                 return $button;
             })
-            ->rawColumns(['action', 'image', 'status', 'type'])
+            ->addColumn('vendor', function($query){
+                return $query->vendor->shop_name;
+            })
+            ->addColumn('approve', function($query){
+                return "<select class='form-control is_approve' data-id='$query->id'>
+            <option value='0'>Pending</option>
+            <option selected value='1'>Approved</option>
+            </select>";
+            })
+            ->rawColumns(['action', 'image', 'status', 'type', 'vendor', 'approve'])
             ->setRowId('id');
     }
 
@@ -79,7 +88,9 @@ class ProductDataTable extends DataTable
      */
     public function query(Product $model): QueryBuilder
     {
-        return $model->where('vendor_id', Auth::user()->vendor->id)->newQuery();
+        return $model->where('vendor_id', '!=', Auth::user()->vendor->id)
+            ->where('is_approved', 1)
+            ->newQuery();
     }
 
     /**
@@ -88,7 +99,7 @@ class ProductDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('product-table')
+                    ->setTableId('sellerproducts-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -111,15 +122,17 @@ class ProductDataTable extends DataTable
     {
         return [
             Column::make('id'),
+            Column::make('vendor'),
             Column::make('image'),
-            Column::make('name')->width(200),
+            Column::make('name'),
             Column::make('price'),
-            Column::make('type')->width(100),
-            Column::make('status')->width(80),
+            Column::make('type')->width(150),
+            Column::make('status'),
+            Column::make('approve')->width(120),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(200)
+                ->width(180)
                 ->addClass('text-center'),
         ];
     }
@@ -129,6 +142,6 @@ class ProductDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Product_' . date('YmdHis');
+        return 'SellerProducts_' . date('YmdHis');
     }
 }
