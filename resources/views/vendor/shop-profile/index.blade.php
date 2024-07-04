@@ -13,12 +13,12 @@
                         <h3><i class="far fa-user"></i> Shop profile</h3>
                         <div class="wsus__dashboard_profile">
                             <div class="wsus__dash_pro_area">
-                                <form action="{{route('vendor.shop-profile.store')}}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('vendor.shop-profile.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group wsus__input">
                                         <label>Preview</label>
                                         <br>
-                                        <img width="200px" src="{{asset($profile->banner)}}" alt="">
+                                        <img width="200px" src="{{ asset($profile->banner) }}" alt="">
                                     </div>
                                     <div class="form-group wsus__input">
                                         <label>Banner</label>
@@ -27,42 +27,42 @@
 
                                     <div class="form-group wsus__input">
                                         <label>Shop Name</label>
-                                        <input type="text" class="form-control" name="shop_name" value="{{$profile->shop_name}}">
+                                        <input type="text" class="form-control" name="shop_name" value="{{ $profile->shop_name }}">
                                     </div>
 
                                     <div class="form-group wsus__input">
                                         <label>Phone</label>
-                                        <input type="text" class="form-control" name="phone" value="{{$profile->phone}}">
+                                        <input type="text" class="form-control" name="phone" value="{ $profile->phone }}">
                                     </div>
 
                                     <div class="form-group wsus__input">
                                         <label>Email</label>
-                                        <input type="text" class="form-control" name="email"  value="{{$profile->email}}">
+                                        <input type="text" class="form-control" name="email"  value="{{ $profile->email }}">
                                     </div>
 
                                     <div class="form-group wsus__input">
                                         <label>Address</label>
-                                        <input type="text" class="form-control" name="address" value="{{$profile->address}}">
+                                        <input type="text" class="form-control" name="address" value="{{ $profile->address }}">
                                     </div>
 
                                     <div class="form-group wsus__input">
                                         <label>Description</label>
-                                        <textarea class="summernote" name="description">{{$profile->description}}</textarea>
+                                        <textarea class="summernote" name="description">{{ $profile->description }}</textarea>
                                     </div>
 
                                     <div class="form-group wsus__input">
                                         <label>Facebook</label>
-                                        <input type="text" class="form-control" name="fb_link" value="{{$profile->fb_link}}">
+                                        <input type="text" class="form-control" name="fb_link" value="{{ $profile->fb_link }}">
                                     </div>
 
                                     <div class="form-group wsus__input">
                                         <label>Twitter</label>
-                                        <input type="text" class="form-control" name="tw_link" value="{{$profile->tw_link}}">
+                                        <input type="text" class="form-control" name="tw_link" value="{{ $profile->tw_link }}">
                                     </div>
 
                                     <div class="form-group wsus__input">
                                         <label>Instagram</label>
-                                        <input type="text" class="form-control" name="insta_link" value="{{$profile->ig_link}}">
+                                        <input type="text" class="form-control" name="ig_link" value="{{ $profile->ig_link }}">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>
