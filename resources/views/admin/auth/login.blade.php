@@ -15,16 +15,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css')}}">
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- /END GA -->
 </head>
 
 <body>
@@ -36,14 +26,11 @@
                     <div class="login-brand">
                         <img src="{{ asset('backend/assets/img/stisla-fill.svg') }}" alt="logo" width="100" class="shadow-light rounded-circle">
                     </div>
-
                     <div class="card card-primary">
                         <div class="card-header"><h4>Login</h4></div>
-
                         <div class="card-body">
                             <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                                 @csrf
-
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus
@@ -57,7 +44,7 @@
                                     <div class="d-block">
                                         <label for="password" class="control-label">{{ __('Password') }}</label>
                                         <div class="float-right">
-                                            <a href="auth-forgot-password.html" class="text-small">
+                                            <a href="{{ route('password.request') }}" class="text-small">
                                                 Forgot Password?
                                             </a>
                                         </div>
