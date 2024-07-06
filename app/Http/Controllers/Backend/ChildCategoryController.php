@@ -6,6 +6,7 @@ use App\DataTables\ChildCategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\ChildCategory;
+use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -54,7 +55,7 @@ class ChildCategoryController extends Controller
 
         $childCategory = new ChildCategory();
 
-        $childCategory->category_id = $request->category_id;
+        $childCategory->category_id = $request->category;
         $childCategory->sub_category_id = $request->sub_category_id;
         $childCategory->name = $request->name;
         $childCategory->slug = Str::slug($request->name);
@@ -119,6 +120,10 @@ class ChildCategoryController extends Controller
     public function destroy(string $id)
     {
         $childCategory = ChildCategory::findOrFail($id);
+        if(Product::where('child_category_id', $childCategory->id)->count() > 0){
+            return response(['status' => 'error', 'message' => 'This item contain relation can\'t delete it.']);
+        }
+
         $childCategory->delete();
 
         return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
