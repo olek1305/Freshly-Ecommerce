@@ -6,7 +6,6 @@
         <div class="section-header">
             <h1>Product Variant</h1>
         </div>
-
         <div class="section-body">
             <div class="row">
                 <div class="col-12">

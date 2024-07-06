@@ -6,7 +6,6 @@
         <div class="section-header">
             <h1>Product</h1>
         </div>
-
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
@@ -15,13 +14,14 @@
                             <h4>Update Product</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{route('admin.products.update', $product->id)}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
                                     <label>Preview</label>
                                     <img alt="" src="{{ asset($product->thumb_image) }}">
                                 </div>
+
                                 <div class="form-group">
                                     <label>Image</label>
                                     <input type="file" class="form-control" name="image">
@@ -39,29 +39,31 @@
                                             <select id="inputState" class="form-control main-category" name="category">
                                                 <option value="">Select</option>
                                                 @foreach ($categories as $category)
-                                                    <option {{$category->id === $product->category_id ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
+                                                    <option {{ $category->id === $product->category_id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="inputState">Sub Category</label>
                                             <select id="inputState" class="form-control sub-category" name="sub_category">
                                                 <option value="">Select</option>
                                                 @foreach ($subCategories as $subCategory)
-                                                    <option {{$subCategory->id == $product->sub_category_id ? 'selected' : ''}} value="{{$subCategory->id}}">{{$subCategory->name}}</option>
+                                                    <option {{ $subCategory->id == $product->sub_category_id ? 'selected' : '' }} value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="inputState">Child Category</label>
                                             <select id="inputState" class="form-control child-category" name="child_category">
                                                 <option value="">Select</option>
                                                 @foreach ($childCategories as $childCategory)
-                                                    <option {{$childCategory->id == $product->child_category_id ? 'selected' : ''}} value="{{$childCategory->id}}">{{$childCategory->name}}</option>
+                                                    <option {{ $childCategory->id == $product->child_category_id ? 'selected' : '' }} value="{{ $childCategory->id }}">{{ $childCategory->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -100,6 +102,7 @@
                                             <input type="text" class="form-control datepicker" name="offer_start_date" value="{{ $product->offer_start_date }}">
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Offer End Date</label>
@@ -118,12 +121,10 @@
                                     <input type="text" class="form-control" name="video_link" value="{{ $product->video_link }}">
                                 </div>
 
-
                                 <div class="form-group">
                                     <label>Short Description</label>
                                     <textarea name="short_description" class="form-control">{{ $product->short_description }}</textarea>
                                 </div>
-
 
                                 <div class="form-group">
                                     <label>Long Description</label>
@@ -161,11 +162,9 @@
                                 <button type="submit" class="btn btn-primary">Create</button>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 @endsection

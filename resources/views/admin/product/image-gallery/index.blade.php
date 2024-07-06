@@ -9,7 +9,6 @@
         <div class="mb-3">
             <a href="{{ route('admin.products.index') }}" class="btn btn-primary">Back</a>
         </div>
-
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
@@ -32,16 +31,12 @@
                 </div>
             </div>
         </div>
-
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>All Images</h4>
-                            <div class="card-header-action">
-
-                            </div>
                         </div>
                         <div class="card-body">
                             {{ $dataTable->table() }}

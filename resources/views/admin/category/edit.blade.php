@@ -6,7 +6,6 @@
         <div class="section-header">
             <h1>Category</h1>
         </div>
-
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
@@ -25,10 +24,12 @@
                                                 role="iconpicker" name="icon" data-icon="{{ $category->icon }}"></button>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input type="text" class="form-control" name="name" value="{{ $category->name }}">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="inputStatus">Status</label>
                                     <select id="inputStatus" class="form-control" name="status" >
