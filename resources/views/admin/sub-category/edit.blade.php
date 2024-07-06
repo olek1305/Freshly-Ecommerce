@@ -23,7 +23,7 @@
                                     <select id="inputState" class="form-control" name="category_id">
                                         <option value="" disabled="disabled">Select</option>
                                         @foreach($categories as $category)
-                                            <option {{ $subCategory->id === $subCategory->category_id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option {{ $category->id === $subCategory->category_id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
