@@ -15,6 +15,7 @@ class FlashSaleController extends Controller
     {
         $flashSaleDate = FlashSale::first();
         $products = Product::where('is_approved', 1)->where('status', 1)->orderBy('id', 'DESC')->get();
+
         return $dataTable->render('admin.flash-sale.index', compact('flashSaleDate', 'products'));
     }
 
