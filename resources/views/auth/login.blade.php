@@ -50,17 +50,18 @@
                                 <div class="wsus__login">
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
-
                                         <div class="wsus__login_input">
                                             <i class="fas fa-user-tie"></i>
-                                            <input type="email" id="email" value="{{ old('email') }}"
+                                            <input type="email" id="emailLogin" value="{{ old('email') }}"
                                                    name="email" placeholder="Email">
                                         </div>
+
                                         <div class="wsus__login_input">
                                             <i class="fas fa-key"></i>
-                                            <input type="password" id="password"
+                                            <input type="password" id="passwordLogin"
                                                    name="password" placeholder="Password">
                                         </div>
+
                                         <div class="wsus__login_save">
                                             <div class="form-check form-switch">
                                                 <input type="checkbox" id="remember_me"
@@ -70,6 +71,7 @@
                                             <a class="forget_p" href="{{ route('password.request') }}">forget password ?</a>
                                             <a class="forget_p" href="{{ route('password.email') }}">forget email ?</a>
                                         </div>
+
                                         <button class="common_btn" type="submit">login</button>
                                         <p class="social_text">Sign in with social account</p>
                                         <ul class="wsus__login_link">
@@ -86,22 +88,24 @@
                                 <div class="wsus__login">
                                     <form method="POST" action="{{ route('register') }}">
                                         @csrf
-
                                         <div class="wsus__login_input">
                                             <i class="fas fa-user-tie"></i>
-                                            <input type="text" id="name" value="{{ old('name') }}"
+                                            <input type="text" id="nameRegister" value="{{ old('name') }}"
                                                    name="name" placeholder="Name">
                                         </div>
+
                                         <div class="wsus__login_input">
                                             <i class="far fa-envelope"></i>
-                                            <input type="text" id="email" value="{{ old('email') }}"
+                                            <input type="text" id="emailRegister" value="{{ old('email') }}"
                                                    name="email" placeholder="Email">
                                         </div>
+
                                         <div class="wsus__login_input">
                                             <i class="fas fa-key"></i>
                                             <input type="password" id="password"
                                                    name="password" placeholder="Password">
                                         </div>
+
                                         <div class="wsus__login_input">
                                             <i class="fas fa-key"></i>
                                             <input type="password" id="password_confirmation"
