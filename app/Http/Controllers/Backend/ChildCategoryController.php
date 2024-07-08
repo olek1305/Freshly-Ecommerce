@@ -55,7 +55,7 @@ class ChildCategoryController extends Controller
 
         $childCategory = new ChildCategory();
 
-        $childCategory->category_id = $request->category;
+        $childCategory->category_id = $request->category_id;
         $childCategory->sub_category_id = $request->sub_category_id;
         $childCategory->name = $request->name;
         $childCategory->slug = Str::slug($request->name);
