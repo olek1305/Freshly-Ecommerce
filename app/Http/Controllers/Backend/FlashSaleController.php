@@ -47,6 +47,10 @@ class FlashSaleController extends Controller
 
         $flashSaleDate = FlashSale::first();
 
+        if (!$flashSaleDate) {
+            return redirect()->back()->withErrors('No active flash sale end date found.');
+        }
+
         $flashSaleItem = new FlashSaleItem();
         $flashSaleItem->product_id = $request->product;
         $flashSaleItem->flash_sale_id = $flashSaleDate->id;

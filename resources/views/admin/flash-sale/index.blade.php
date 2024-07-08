@@ -23,7 +23,7 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label>Sale End Date</label>
-                                    <input type="text" class="form-control datepicker" name="end_date" value="{{ $flashSaleDate->end_date }}">
+                                    <input type="text" class="form-control datepicker" name="end_date" value="{{ $flashSaleDate ? $flashSaleDate->end_date : '' }}">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </form>
