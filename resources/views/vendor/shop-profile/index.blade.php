@@ -32,7 +32,7 @@
 
                                     <div class="form-group wsus__input">
                                         <label>Phone</label>
-                                        <input type="text" class="form-control" name="phone" value="{ $profile->phone }}">
+                                        <input type="text" class="form-control" name="phone" value="{{ $profile->phone }}">
                                     </div>
 
                                     <div class="form-group wsus__input">
