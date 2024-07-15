@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    {{ $settings->site_name }} || Flash Sale
+@endsection
+
 @section('content')
     <!--============================
         BREADCRUMB START
@@ -81,12 +85,12 @@
                                 <a class="wsus__pro_link" href="javascript:void(0);">
                                     <img src="{{ asset($product->thumb_image) }}" alt="product" class="img-fluid w-100 img_1" />
                                     <img src="
-                                @if(isset($product->productImageGalleries[0]->image))
-                                    {{ asset($product->productImageGalleries[0]->image) }}
-                                @else
-                                    {{ asset($product->thumb_image) }}
-                                @endif
-                            " alt="product" class="img-fluid w-100 img_2" />
+                                        @if(isset($product->productImageGalleries[0]->image))
+                                            {{ asset($product->productImageGalleries[0]->image) }}
+                                        @else
+                                            {{ asset($product->thumb_image) }}
+                                        @endif
+                                    " alt="product" class="img-fluid w-100 img_2" />
                                 </a>
                                 <ul class="wsus__single_pro_icon">
                                     <li><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
