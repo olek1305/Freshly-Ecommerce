@@ -15,7 +15,7 @@
                     <div class="col-12">
                         <h4>login / register</h4>
                         <ul>
-                            <li><a href="{{ route('/') }}">home</a></li>
+                            <li><a href="/">home</a></li>
                             <li><a href="{{ route('register') }}">login / register</a></li>
                         </ul>
                     </div>
