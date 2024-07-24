@@ -4340,7 +4340,7 @@ CART VIEW PAGE START
 }
 
 .wsus__cart_list .wsus__pro_name {
-  width: 250px;
+  width: 285px;
 }
 
 .wsus__cart_list td.wsus__pro_name {
@@ -9544,3 +9544,12 @@ a:not([href]):not([class]):hover {
     margin-right: 10px;
 }
 
+.product_qty_wrapper {
+    display: flex;
+}
+
+.product_qty_wrapper > .product-qty {
+    width: 43px;
+    height: 36px;
+    padding-left: 5px;
+}

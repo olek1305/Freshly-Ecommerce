@@ -73,11 +73,12 @@
 <script src="{{ asset('backend/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('backend/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
 <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script src="{{ asset('backend/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 
+<!-- app.js-->
+@vite(['resources/js/app.js'])
 
 <!-- Page Specific JS File -->
 <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script>

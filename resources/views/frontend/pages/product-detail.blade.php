@@ -75,7 +75,9 @@
                                 <p class="wsus__stock_area"><span class="in_stock">stock out</span> ({{ $product->qty }} item)</p>
                             @endif
                             @if(checkDiscount($product))
-                                <h4 class="wsus__price">{{ $settings->currency_icon }}{{ $product->offer_price }}<del>{{ $settings->currency_icon }}{{ $product->price }}</del></h4>
+                                <h4 class="wsus__price">{{ $settings->currency_icon }}{{ $product->offer_price }}
+                                    <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
+                                </h4>
                             @else
                                 <h4 class="wsus__price">{{ $settings->currency_icon }}{{ $product->offer_price }}></h4>
                             @endif
@@ -88,7 +90,6 @@
                                 <span>20 review</span>
                             </p>
                             <p class="description">{!! $product->short_description !!}</p>
-
                             <form class="shopping-cart-form">
                                 <div class="wsus__selectbox">
                                     <div class="row">
@@ -100,7 +101,9 @@
                                                     <select class="select_2" name="variants_items[]">
                                                         @foreach($variant->productVariantItems as $variantItem)
                                                             @if($variantItem->status != 0)
-                                                                <option value="{{ $variantItem->id }}" {{ $variantItem->is_default == 1 ? 'selected' : '' }}>{{ $variantItem->name }} (${{ $variantItem->price }})</option>
+                                                                <option value="{{ $variantItem->id }}" {{ $variantItem->is_default === 1 ? 'selected' : '' }}>
+                                                                    {{ $variantItem->name }} ({{ $settings->currency_icon }}{{ $variantItem->price }})
+                                                                </option>
                                                             @endif
                                                         @endforeach
                                                     </select>
@@ -119,9 +122,11 @@
 
                                 <ul class="wsus__button_area">
                                     <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
+
                                     <li><a style="border: 1px solid gray;
                                         padding: 7px 11px;
-                                        border-radius: 100%;" href="javascript:void(0);" class="add_to_wishlist" data-id="{{ $product->id }}"><i class="fal fa-heart"></i></a>
+                                        border-radius: 100%;" href="javascript:void(0);" class="add_to_wishlist"
+                                           data-id="{{ $product->id }}"><i class="fal fa-heart"></i></a>
                                     </li>
 
                                     <li>
@@ -153,6 +158,7 @@
                                                     data-bs-target="#pills-contact" type="button" role="tab"
                                                     aria-controls="pills-contact" aria-selected="false">Vendor Info</button>
                                         </li>
+
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="pills-contact-tab2" data-bs-toggle="pill"
                                                     data-bs-target="#pills-contact2" type="button" role="tab"
@@ -180,6 +186,7 @@
                                                             <img src="{{ asset($product->vendor->banner) }}" alt="vendor" class="img-fluid w-100">
                                                         </div>
                                                     </div>
+
                                                     <div class="col-xl-6 col-xxl-7 col-md-6 mt-4 mt-md-0">
                                                         <div class="wsus__pro_det_vendor_text">
                                                                <h4>{{ $product->vendor->user->name }}</h4>
@@ -191,6 +198,7 @@
                                                             <a href="javascript:void(0);" class="see_btn">visit store</a>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-xl-12">
                                                         <div class="wsus__vendor_details">
                                                             {!! $product->vendor->description !!}
@@ -229,3 +237,31 @@
         PRODUCT DETAILS END
     ==============================-->
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.shopping-cart-form').on('submit', function (e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $.ajax({
+                    method: 'POST',
+                    data: formData,
+                    url: "{{ route('add-to-cart') }}",
+                    success: function(data){
+
+                    },
+                    error: function(data){
+
+                    }
+                })
+            })
+        });
+    </script>
+@endpush

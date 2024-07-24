@@ -11,7 +11,7 @@
             <div class="col-xl-4 col-lg-6">
                 <div class="wsus__hot_deals_offer">
                     <div class="wsus__hot_deals_img">
-                        <img src="images/pro0010.jpg" alt="mobile" class="img-fluid w-100">
+                        <img src="{{asset('frontend/assets/images/pro0010.jpg') }}" alt="mobile" class="img-fluid w-100">
                     </div>
                     <div class="wsus__hot_deals_text">
                         <a class="wsus__hot_title" href="product_details.html">apple smart watch</a>
@@ -41,7 +41,7 @@
             <div class="col-xl-4 col-lg-6">
                 <div class="wsus__hot_deals_offer">
                     <div class="wsus__hot_deals_img">
-                        <img src="images/pro0011.jpg" alt="mobile" class="img-fluid w-100">
+                        <img src="{{ asset('frontend/assets/images/pro0011.jpg') }}" alt="mobile" class="img-fluid w-100">
                     </div>
                     <div class="wsus__hot_deals_text">
                         <a class="wsus__hot_title" href="product_details.html">portable mobile Speaker</a>
@@ -71,7 +71,7 @@
             <div class="col-xl-4 col-lg-6">
                 <div class="wsus__hot_deals_offer">
                     <div class="wsus__hot_deals_img">
-                        <img src="images/pro0012.jpg" alt="mobile" class="img-fluid w-100">
+                        <img src="{{ asset('frontend/assets/images/pro0012.jpg') }}" alt="mobile" class="img-fluid w-100">
                     </div>
                     <div class="wsus__hot_deals_text">
                         <a class="wsus__hot_title" href="product_details.html">apple smart watch</a>
