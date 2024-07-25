@@ -244,7 +244,6 @@
                         });
                     }
                 }, function(data) {
-                    console.error('Error updating quantity:', data);
                     Swal.fire({
                         icon: 'error',
                         title: 'An error occurred. Please try again.',
@@ -308,7 +307,6 @@
                         });
                     }
                 }, function(data) {
-                    console.error('Error updating quantity:', data);
                     Swal.fire({
                         icon: 'error',
                         title: 'An error occurred. Please try again.',
@@ -340,7 +338,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: 'get',
-                            url: "{{ route('clear.cart') }}",
+                            url: "{{ route('cart.clear') }}",
                             success: function(data){
                                 setTimeout(function() {
                                     if (data.status === 'success') {

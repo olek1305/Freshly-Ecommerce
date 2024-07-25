@@ -247,21 +247,65 @@
                 }
             });
 
+            //add product into cart
             $('.shopping-cart-form').on('submit', function (e) {
                 e.preventDefault();
                 let formData = $(this).serialize();
                 $.ajax({
                     method: 'POST',
                     data: formData,
-                    url: "{{ route('add-to-cart') }}",
+                    url: "{{ route('cart.add') }}",
                     success: function(data){
-
+                        getCartCount();
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "success",
+                            title: data.message
+                        });
                     },
-                    error: function(data){
-
+                    error: function(xhr){
+                        let errorMessage = xhr.status + ': ' + xhr.statusText;
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: errorMessage
+                        });
                     }
-                })
-            })
+                });
+            });
+
+            function getCartCount() {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart.count') }}",
+                    success: function(data){
+                        $('#cart-count').text(data);
+                    },
+                    error: function(xhr){
+                        console.log('Error fetching cart count:', xhr);
+                    }
+                });
+            }
         });
     </script>
 @endpush

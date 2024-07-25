@@ -110,4 +110,9 @@ class CartController extends Controller
 
         return redirect()->back();
     }
+
+    public function getCartCount()
+    {
+        return Cart::content()->count();
+    }
 }

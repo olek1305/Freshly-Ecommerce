@@ -41,11 +41,12 @@ Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flashSale
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('productDetail.show');
 
 /** Cart Route */
-Route::post('cart/add-to', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('cart/detail', [CartController::class, 'cartDetail'])->name('cart-details');
 Route::post('cart/update-quantity', [CartController::class, 'updateProductQty'])->name('cart.update-quantity');
-Route::get('cart/clear', [CartController::class, 'clearCart'])->name('clear.cart');
+Route::get('cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 Route::get('cart/remove-product/{rowId}', [CartController::class, 'removeProduct'])->name('cart.remove-product');
+Route::get('cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
