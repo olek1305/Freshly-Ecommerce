@@ -1,0 +1,44 @@
+services:
+    nginx:
+        image: nginx:alpine
+        container_name: nginx
+        ports:
+            - "8080:80"
+        volumes:
+            - ./:/var/www
+            - ./phpdocker/nginx/:/etc/nginx/conf.d/
+        depends_on:
+            - app
+            - db
+
+    db:
+        image: mysql
+        container_name: mysql
+        volumes:
+            - ./mysql/data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: laravel
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_USER: username
+            MYSQL_PASSWORD: password
+
+    app:
+        container_name: freshly-ecommerce
+        build:
+            context: ./phpdocker
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/var/www
+        ports:
+            - "9001:9000"
+        working_dir: /var/www
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        ports:
+            - "3400:80"
+        depends_on:
+            - db
