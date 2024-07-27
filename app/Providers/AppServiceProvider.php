@@ -27,23 +27,26 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        /** check if it has table general_settings */
-        if (!Schema::hasTable('general_settings')) {
-            abort(404, 'Table general_settings not found.');
-        }
+        // check if it has table general_settings
+        if (Schema::hasTable('general_settings')) {
+            $generalSetting = GeneralSetting::first();
 
-        $generalSetting = GeneralSetting::first();
+            if ($generalSetting) {
+                // set time zone
+                Config::set('app.timezone', $generalSetting->timezone);
 
-        if ($generalSetting) {
-            /** set time zone */
-            Config::set('app.timezone', $generalSetting->timezone);
-
-            /** share variable at all view */
-            View::composer('*', function ($view) use ($generalSetting) {
-                $view->with('settings', $generalSetting);
-            });
+                // share variable at all view
+                View::composer('*', function ($view) use ($generalSetting) {
+                    $view->with('settings', $generalSetting);
+                });
+            } else {
+                // Log no data, but do not interrupt operation
+                Log::info('No general settings found.');
+            }
         } else {
-            abort(404, 'No general settings found.');
+            // Log the table missing, but do not interrupt the operation
+            Log::info('Table general_settings not found.');
         }
     }
+
 }
