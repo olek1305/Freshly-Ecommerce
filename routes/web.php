@@ -38,7 +38,7 @@ Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login'
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flashSale.index');
 
 /** Product detail route */
-Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('productDetail.show');
+Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
 
 /** Cart Route */
 Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add');
@@ -47,6 +47,10 @@ Route::post('cart/update-quantity', [CartController::class, 'updateProductQty'])
 Route::get('cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 Route::get('cart/remove-product/{rowId}', [CartController::class, 'removeProduct'])->name('cart.remove-product');
 Route::get('cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
+Route::get('cart/products', [CartController::class, 'getCartProducts'])->name('cart.products');
+Route::post('cart/remove-sidebar-product', [CartController::class, 'removeSidebarProduct'])->name('cart.remove-sidebar-product');
+Route::get('cart/sidebar-product-subtotal', [CartController::class, 'cartTotal'])->name('cart.sidebar-product-subtotal');
+
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
