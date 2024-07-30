@@ -151,6 +151,8 @@
             @endforeach
         @endif
     </script>
+    <!--scripts.js from layout-->
+    @include('frontend.layouts.scripts')
     @stack('scripts')
 </body>
 
