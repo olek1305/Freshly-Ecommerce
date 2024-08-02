@@ -197,6 +197,42 @@
                 }, 1000);
             }
 
+            // Show toast with a confirmation
+            function showToastNotification(icon, title) {
+                Swal.fire({
+                    icon: icon,
+                    title: title,
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+            }
+
+            // Show toast
+            function showToast(icon, title) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: icon,
+                    title: title
+                });
+            }
+
             $('.product-decrement').on('click', function() {
                 let input = $(this).siblings('.product-qty');
                 let quantity = parseInt(input.val()) - 1;
@@ -211,52 +247,12 @@
                         let productId = '#' + rowId;
                         let totalAmount = "{{ $settings->currency_icon }}" + data.product_total;
                         $(productId).text(totalAmount);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.onmouseenter = Swal.stopTimer;
-                                toast.onmouseleave = Swal.resumeTimer;
-                            }
-                        });
-                        Toast.fire({
-                            icon: "success",
-                            title: data.message
-                        });
+                        showToast('success', data.message);
                     } else if (data.status === 'error') {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.onmouseenter = Swal.stopTimer;
-                                toast.onmouseleave = Swal.resumeTimer;
-                            }
-                        });
-                        Toast.fire({
-                            icon: "error",
-                            title: data.message
-                        });
+                        showToast('error', data.message);
                     }
-                }, function(data) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'An error occurred. Please try again.',
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
+                }, function() {
+                    showToastNotification('error', 'An error occurred. Please try again.');
                 });
             });
 
@@ -274,61 +270,21 @@
                         let productId = '#' + rowId;
                         let totalAmount = "{{ $settings->currency_icon }}" + data.product_total;
                         $(productId).text(totalAmount);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.onmouseenter = Swal.stopTimer;
-                                toast.onmouseleave = Swal.resumeTimer;
-                            }
-                        });
-                        Toast.fire({
-                            icon: "success",
-                            title: data.message
-                        });
+                        showToast('success', data.message);
                     } else if (data.status === 'error') {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.onmouseenter = Swal.stopTimer;
-                                toast.onmouseleave = Swal.resumeTimer;
-                            }
-                        });
-                        Toast.fire({
-                            icon: "error",
-                            title: data.message
-                        });
+                        showToast('error', data.message);
                     }
-                }, function(data) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'An error occurred. Please try again.',
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
+                }, function() {
+                    showToastNotification('error', 'An error occurred. Please try again.');
                 });
             });
 
-            // clear cart
-            $('.clear_cart').on('click', function(e){
+            // Clear cart
+            $('.clear_cart').on('click', function(e) {
                 e.preventDefault();
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "This action will clear your cart!",
+                    title: 'Warning',
+                    text: 'This action will clear your cart!',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -339,41 +295,16 @@
                         $.ajax({
                             type: 'get',
                             url: "{{ route('cart.clear') }}",
-                            success: function(data){
+                            success: function(data) {
                                 setTimeout(function() {
                                     if (data.status === 'success') {
                                         window.location.reload();
                                     }
                                 }, 2000);
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: data.message,
-                                    toast: true,
-                                    position: 'top-end',
-                                    showConfirmButton: false,
-                                    timer: 3000,
-                                    timerProgressBar: true,
-                                    didOpen: (toast) => {
-                                        toast.onmouseenter = Swal.stopTimer;
-                                        toast.onmouseleave = Swal.resumeTimer;
-                                    }
-                                });
+                                showToastNotification('success', data.message);
                             },
-                            error: function(xhr, status, error){
-                                console.log(error);
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'An error occurred. Please try again.',
-                                    toast: true,
-                                    position: 'top-end',
-                                    showConfirmButton: false,
-                                    timer: 3000,
-                                    timerProgressBar: true,
-                                    didOpen: (toast) => {
-                                        toast.onmouseenter = Swal.stopTimer;
-                                        toast.onmouseleave = Swal.resumeTimer;
-                                    }
-                                });
+                            error: function() {
+                                showToastNotification('error', 'An error occurred. Please try again.');
                             }
                         });
                     }
@@ -382,5 +313,6 @@
         });
     </script>
 @endpush
+
 
 

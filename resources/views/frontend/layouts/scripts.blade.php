@@ -34,10 +34,14 @@
                 data: formData,
                 url: "{{ route('cart.add') }}",
                 success: function(data){
-                    getCartCount();
-                    fetchSidebarCartProducts();
-                    $('.mini_cart_actions').removeClass('d-none');
-                    showToast("success", data.message);
+                    if(data.status === 'success') {
+                        getCartCount();
+                        fetchSidebarCartProducts();
+                        $('.mini_cart_actions').removeClass('d-none');
+                        showToast("success", data.message);
+                    } else if (data.status === 'error'){
+                        showToast("error", data.message);
+                    }
                 },
                 error: function(xhr){
                     let errorMessage = xhr.status + ': ' + xhr.statusText;
@@ -55,7 +59,8 @@
                     $('#cart-count').text(data);
                 },
                 error: function(xhr){
-                    console.log('Error fetching cart count:', xhr);
+                    let errorMessage = xhr.status + ': ' + xhr.statusText;
+                    showToast("error", errorMessage);
                 }
             });
         }
