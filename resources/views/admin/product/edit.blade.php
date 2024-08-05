@@ -19,7 +19,9 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label>Preview</label>
-                                    <img alt="" src="{{ asset($product->thumb_image) }}">
+                                    <div>
+                                        <img alt="" src="{{ asset($product->thumb_image) }}">
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -159,7 +161,7 @@
                                         <option {{$product->status == 0 ? 'selected' : ''}} value="0">Inactive</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </div>
@@ -192,7 +194,6 @@
                     }
                 })
             })
-
 
             /** get child categories **/
             $('body').on('change', '.sub-category', function(e){
