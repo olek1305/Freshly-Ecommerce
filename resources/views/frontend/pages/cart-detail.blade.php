@@ -182,19 +182,27 @@
                 }
             });
 
+            function debounce(func, delay) {
+                let debounceTimer;
+                return function() {
+                    const context = this;
+                    const args = arguments;
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+                };
+            }
+
             function updateQuantity(rowId, quantity, successCallback, errorCallback) {
-                setTimeout(function() {
-                    $.ajax({
-                        url: "{{ route('cart.update-quantity') }}",
-                        method: 'POST',
-                        data: {
-                            rowId: rowId,
-                            quantity: quantity
-                        },
-                        success: successCallback,
-                        error: errorCallback
-                    });
-                }, 1000);
+                $.ajax({
+                    url: "{{ route('cart.update-quantity') }}",
+                    method: 'POST',
+                    data: {
+                        rowId: rowId,
+                        quantity: quantity
+                    },
+                    success: successCallback,
+                    error: errorCallback
+                });
             }
 
             // Show toast with a confirmation
@@ -233,15 +241,7 @@
                 });
             }
 
-            $('.product-decrement').on('click', function() {
-                let input = $(this).siblings('.product-qty');
-                let quantity = parseInt(input.val()) - 1;
-                let rowId = input.data('rowid');
-                if (quantity < 1) {
-                    quantity = 1;
-                }
-                input.val(quantity);
-
+            const debouncedUpdateQuantity = debounce(function(rowId, quantity) {
                 updateQuantity(rowId, quantity, function(data) {
                     if (data.status === 'success') {
                         let productId = '#' + rowId;
@@ -254,6 +254,17 @@
                 }, function() {
                     showToastNotification('error', 'An error occurred. Please try again.');
                 });
+            }, 1000); // 2 seconds debounce delay
+
+            $('.product-decrement').on('click', function() {
+                let input = $(this).siblings('.product-qty');
+                let quantity = parseInt(input.val()) - 1;
+                let rowId = input.data('rowid');
+                if (quantity < 1) {
+                    quantity = 1;
+                }
+                input.val(quantity);
+                debouncedUpdateQuantity(rowId, quantity);
             });
 
             $('.product-increment').on('click', function() {
@@ -264,19 +275,7 @@
                     quantity = 100;
                 }
                 input.val(quantity);
-
-                updateQuantity(rowId, quantity, function(data) {
-                    if (data.status === 'success') {
-                        let productId = '#' + rowId;
-                        let totalAmount = "{{ $settings->currency_icon }}" + data.product_total;
-                        $(productId).text(totalAmount);
-                        showToast('success', data.message);
-                    } else if (data.status === 'error') {
-                        showToast('error', data.message);
-                    }
-                }, function() {
-                    showToastNotification('error', 'An error occurred. Please try again.');
-                });
+                debouncedUpdateQuantity(rowId, quantity);
             });
 
             // Clear cart
