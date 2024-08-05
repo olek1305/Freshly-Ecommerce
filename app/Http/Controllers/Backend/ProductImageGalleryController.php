@@ -37,7 +37,7 @@ class ProductImageGalleryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image.*' => ['required', 'mimes:jpeg,jpg,png', 'max:2048']
+            'image.*' => ['required', 'mimes:jpeg,jpg,png,webp', 'max:2048']
         ]);
 
         /** Handle image upload */
