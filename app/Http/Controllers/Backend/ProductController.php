@@ -49,7 +49,7 @@ class ProductController extends Controller
             'brand' => ['required'],
             'price' => ['required'],
             'qty' => ['required'],
-            'short_description' => ['required', 'max: 600'],
+            'short_description' => ['required', 'max:600'],
             'long_description' => ['required'],
             'seo_title' => ['nullable','max:200'],
             'seo_description' => ['nullable','max:250'],
@@ -122,7 +122,7 @@ class ProductController extends Controller
             'brand' => ['required'],
             'price' => ['required'],
             'qty' => ['required'],
-            'short_description' => ['required', 'max: 600'],
+            'short_description' => ['required', 'max:600'],
             'long_description' => ['required'],
             'seo_title' => ['nullable','max:200'],
             'seo_description' => ['nullable','max:250'],
@@ -157,10 +157,9 @@ class ProductController extends Controller
         $product->seo_description = $request->seo_description;
         $product->save();
 
-        toastr('Updated Successfully!', 'success');
+        flash('Updated Successfully');
 
         return redirect()->route('admin.products.index');
-
     }
 
     /**
