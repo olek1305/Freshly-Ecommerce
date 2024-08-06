@@ -120,7 +120,7 @@
                 <div class="col-xl-3">
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                         <h6>total cart</h6>
-                        <p>subtotal: <span>$124.00</span></p>
+                        <p>subtotal: <span id="sub_total">{{$settings->currency_icon}}{{ getCartTotal() }}</span></p>
                         <p>delivery: <span>$00.00</span></p>
                         <p>discount: <span>$10.00</span></p>
                         <p class="total"><span>total:</span> <span>$134.00</span></p>
@@ -247,6 +247,7 @@
                         let productId = '#' + rowId;
                         let totalAmount = "{{ $settings->currency_icon }}" + data.product_total;
                         $(productId).text(totalAmount);
+                        renderCartSubTotal()
                         showToast('success', data.message);
                     } else if (data.status === 'error') {
                         showToast('error', data.message);
@@ -254,7 +255,7 @@
                 }, function() {
                     showToastNotification('error', 'An error occurred. Please try again.');
                 });
-            }, 1000); // 2 seconds debounce delay
+            }, 500);
 
             $('.product-decrement').on('click', function() {
                 let input = $(this).siblings('.product-qty');
@@ -295,11 +296,9 @@
                             type: 'get',
                             url: "{{ route('cart.clear') }}",
                             success: function(data) {
-                                setTimeout(function() {
                                     if (data.status === 'success') {
                                         window.location.reload();
                                     }
-                                }, 2000);
                                 showToastNotification('success', data.message);
                             },
                             error: function() {
@@ -309,6 +308,20 @@
                     }
                 });
             });
+
+            // get subtotal of cart and put it on dom
+            function renderCartSubTotal(){
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart.sidebar-product-subtotal') }}",
+                    success: function(data) {
+                        $('#sub_total').text("{{$settings->currency_icon}}"+data);
+                    },
+                    error: function(data) {
+                            showToast('error', data);
+                    }
+                })
+            }
         });
     </script>
 @endpush

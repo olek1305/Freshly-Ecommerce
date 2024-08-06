@@ -64,6 +64,11 @@ class CartController extends Controller
     {
         $cartItems = Cart::content();
 
+        if(count($cartItems) === 0 ) {
+            flash()->addWarning('Please add some products in your cart for view the cart page', 'Cart is empty');
+            return redirect()->route('home');
+        }
+
         return view('frontend.pages.cart-detail', compact('cartItems'));
     }
 
