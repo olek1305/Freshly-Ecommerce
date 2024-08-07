@@ -59,3 +59,40 @@ function getCartTotal(): int|float
 
     return $total;
 }
+
+/** get payable total amount */
+function getMainCartTotal(): float
+{
+    $subTotal = getCartTotal();
+
+    if (Session::has('coupon')) {
+        $coupon = Session::get('coupon');
+        if ($coupon['discount_type'] === 'amount') {
+            return round($subTotal - $coupon['discount'], 2);
+        } elseif ($coupon['discount_type'] === 'percent') {
+            $discount = $subTotal * $coupon['discount'] / 100;
+            return round($subTotal - $discount, 2);
+        }
+    }
+
+    return round($subTotal, 2);
+}
+
+/** get cart discount */
+function getCartDiscount(): float
+{
+    if (Session::has('coupon')) {
+        $coupon = Session::get('coupon');
+        $subTotal = getCartTotal();
+        if ($coupon['discount_type'] === 'amount') {
+            return round($coupon['discount'], 2);
+        } elseif ($coupon['discount_type'] === 'percent') {
+            return round($subTotal * $coupon['discount'] / 100, 2);
+        }
+    }
+
+    return 0.00;
+}
+
+
+

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CouponController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -34,13 +35,13 @@ require __DIR__.'/auth.php';
 
 Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
 
-/** Flash Sale route */
+/** Flash Sale routes */
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flashSale.index');
 
-/** Product detail route */
+/** Product detail routes */
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
 
-/** Cart Route */
+/** Cart Routes */
 Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('cart/detail', [CartController::class, 'cartDetail'])->name('cart-details');
 Route::post('cart/update-quantity', [CartController::class, 'updateProductQty'])->name('cart.update-quantity');
@@ -51,6 +52,9 @@ Route::get('cart/products', [CartController::class, 'getCartProducts'])->name('c
 Route::post('cart/remove-sidebar-product', [CartController::class, 'removeSidebarProduct'])->name('cart.remove-sidebar-product');
 Route::get('cart/sidebar-product-subtotal', [CartController::class, 'cartTotal'])->name('cart.sidebar-product-subtotal');
 
+/** Coupon routes */
+Route::get('coupon/apply', [CouponController::class, 'couponApply'])->name('coupon.apply');
+Route::get('coupon/calculation', [CouponController::class, 'couponCalculation'])->name('coupon.calculation');
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');

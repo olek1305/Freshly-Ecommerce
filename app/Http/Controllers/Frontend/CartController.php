@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductVariantItem;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -65,6 +66,7 @@ class CartController extends Controller
         $cartItems = Cart::content();
 
         if(count($cartItems) === 0 ) {
+            Session::forget('coupon');
             flash()->addWarning('Please add some products in your cart for view the cart page', 'Cart is empty');
             return redirect()->route('home');
         }
