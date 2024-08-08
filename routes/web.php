@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CouponController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
@@ -62,5 +64,14 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::put('/profile/update', [UserProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('/profile/update/password', [UserProfileController::class, 'updatePassword'])->name('password.update');
 
+    /** User address routes */
     Route::resource('address', UserAddressController::class);
+
+    /** Checkout routes */
+    Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('checkout/address/create', [CheckoutController::class, 'createAddress'])->name('checkout.address.create');
+    Route::post('checkout/submit', [CheckoutController::class, 'submit'])->name('checkout.submit');
+
+    /** Payment Routes */
+    Route::get('payment', [PaymentController::class, 'index'])->name('payment');
 });
