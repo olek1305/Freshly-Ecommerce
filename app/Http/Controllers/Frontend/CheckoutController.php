@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\ShippingRule;
 use App\Models\UserAddress;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -15,6 +16,12 @@ class CheckoutController extends Controller
     {
         $addresses = UserAddress::where('user_id' ,Auth::user()->id)->get();
         $shippingMethods = ShippingRule::where('status', 1)->get();
+
+        if(count(Cart::content()) === 0 ) {
+            Session::forget('coupon');
+            flash()->addWarning('Please add some products in your cart for view the cart page', 'Cart is empty');
+            return redirect()->route('home');
+        }
 
         return view('frontend.pages.checkout', compact('addresses', 'shippingMethods'));
     }
