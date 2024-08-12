@@ -94,5 +94,22 @@ function getCartDiscount(): float
     return 0.00;
 }
 
+/** get selected shipping fee from session */
+function getShippingFee(): float
+{
+    if (Session::has('shipping_method')) {
+        return Session::get('shipping_method')['cost'];
+    } else {
+        return 0;
+    }
+}
+
+/** get payable amount */
+function getFinalPayableAmount(): float
+{
+    return  getMainCartTotal() + getShippingFee();
+}
+
+
 
 
