@@ -18907,7 +18907,7 @@ namespace Illuminate\Http {
             /**
      *
      *
-     */        class Request {
+     */        class Request {public mixed $token;
                     /**
          *
          *
