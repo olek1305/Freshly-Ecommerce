@@ -19,7 +19,7 @@ class CartController extends Controller
         /** check product quantity */
         if($product->qty === 0) {
             return response(['status' => 'error', 'message' => 'Product stock out']);
-        }elseif($product->qty < $request->qty){
+        } elseif($product->qty < $request->qty) {
             return response(['status' => 'error', 'message' => 'Quantity not available in our stock']);
         }
 
@@ -65,7 +65,7 @@ class CartController extends Controller
     {
         $cartItems = Cart::content();
 
-        if(count($cartItems) === 0 ) {
+        if(count($cartItems) === 0) {
             Session::forget('coupon');
             flash()->addWarning('Please add some products in your cart for view the cart page', 'Cart is empty');
             return redirect()->route('home');
