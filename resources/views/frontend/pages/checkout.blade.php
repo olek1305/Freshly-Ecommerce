@@ -16,7 +16,7 @@
                         <h4>checkout</h4>
                         <ul>
                             <li><a href="{{ route('home') }}">home</a></li>
-                            <li><a href="#">check out</a></li>
+                            <li><a href="#">checkout</a></li>
                         </ul>
                     </div>
                 </div>
