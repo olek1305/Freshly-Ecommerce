@@ -8,11 +8,15 @@ use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\PaypalSetting;
 use App\Models\Product;
+use App\Models\StripeSetting;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Stripe\Charge;
+use Stripe\Exception\ApiErrorException;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
@@ -104,7 +108,7 @@ class PaymentController extends Controller
 
     public function paypalConfig()
     {
-        $paypalSetting = PayPalSetting::find(1);
+        $paypalSetting = PayPalSetting::first();
 
         return [
             'mode'    => $paypalSetting->mode === 1 ? 'live' : 'sandbox', // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
@@ -194,7 +198,42 @@ class PaymentController extends Controller
         Session::forget('coupon');
     }
 
-    public function stripePayment()
+    /**
+     * @throws ApiErrorException
+     */
+    public function stripePayment(Request $request)
+    {
+        $stripeSetting = StripeSetting::first();
+
+        // calculate payable amount depending on currency rate
+        $total = getFinalPayableAmount();
+        $payableAmount = round($total * $stripeSetting->currency_rate, 2);
+
+        Stripe::setApiKey($stripeSetting->secret_key);
+        $response = Charge::create([
+            "amount" => $payableAmount * 100,
+            "currency" => $stripeSetting->currency_name,
+            "source" => $request->stripe_token,
+            "description" => "product purchase!"
+        ]);
+
+        if($response->status === 'succeeded') {
+            $this->storeOrder('stripe', 1, $response->id, $payableAmount, $stripeSetting->currency_name);
+            $this->clearSession();
+
+            return redirect()->route('user.payment.success');
+        } else {
+            flash()->addError('Someting went wrong try agin later!');
+            return redirect()->route('user.payment');
+        }
+    }
+
+    public function stripeSuccess()
+    {
+
+    }
+
+    public function stripeCancel()
     {
 
     }

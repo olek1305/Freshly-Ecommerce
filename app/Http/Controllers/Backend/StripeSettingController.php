@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\PaypalSetting;
+use App\Models\StripeSetting;
 use Illuminate\Http\Request;
 
-class PaypalSettingController extends Controller
+class StripeSettingController extends Controller
 {
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request)
     {
         $request->validate([
@@ -26,10 +23,10 @@ class PaypalSettingController extends Controller
         ]);
 
         // Retrieve the record with id=1
-        $paypalSetting = PaypalSetting::first();
+        $stripeSetting = StripeSetting::first();
 
-        if ($paypalSetting) {
-            $paypalSetting->update([
+        if ($stripeSetting) {
+            $stripeSetting->update([
                 'status' => $request->status,
                 'mode' => $request->mode,
                 'country_name' => $request->country_name,
