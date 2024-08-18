@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $invoice_id
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $payment_method
  * @property int $payment_status
  * @property string $order_address
- * @property string $shopping_method
+ * @property string $shipping_method
  * @property string $coupon
  * @property string $order_status
  * @property \Illuminate\Support\Carbon|null $created_at

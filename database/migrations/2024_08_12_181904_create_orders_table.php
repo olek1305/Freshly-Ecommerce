@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('payment_method');
             $table->integer('payment_status');
             $table->text('order_address');
-            $table->text('shopping_method');
+            $table->text('shipping_method');
             $table->text('coupon');
             $table->string('order_status');
             $table->timestamps();
