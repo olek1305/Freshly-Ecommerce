@@ -72,6 +72,7 @@
                                                             <th class="name">
                                                                 product
                                                             </th>
+
                                                             <th class="amount">
                                                                 Vendor
                                                             </th>
@@ -83,6 +84,7 @@
                                                             <th class="quantity">
                                                                 quantity
                                                             </th>
+
                                                             <th class="total">
                                                                 total
                                                             </th>
@@ -104,9 +106,11 @@
                                                                                 )</span>
                                                                         @endforeach
                                                                     </td>
+
                                                                     <td class="amount">
                                                                         {{ $product->vendor->shop_name }}
                                                                     </td>
+
                                                                     <td class="amount">
                                                                         {{ $settings->currency_icon }}
                                                                         {{ $product->unit_price }}
@@ -115,6 +119,7 @@
                                                                     <td class="quantity">
                                                                         {{ $product->qty }}
                                                                     </td>
+
                                                                     <td class="total">
                                                                         {{ $settings->currency_icon }}
                                                                         {{ $product->unit_price * $product->qty }}
