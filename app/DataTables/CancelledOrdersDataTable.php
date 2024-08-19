@@ -72,7 +72,7 @@ class CancelledOrdersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('canceledorders-table')
+                    ->setTableId('cancelledorders-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -102,10 +102,7 @@ class CancelledOrdersDataTable extends DataTable
             Column::make('amount'),
             Column::make('order_status'),
             Column::make('payment_status'),
-
             Column::make('payment_method'),
-
-
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
