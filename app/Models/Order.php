@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  *
- *
  * @property int $id
  * @property string $invoice_id
  * @property int $user_id
@@ -43,10 +42,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereProductQty($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereShoppingMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereSubTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereShippingMethod($value)
  * @mixin \Eloquent
  */
 class Order extends Model
