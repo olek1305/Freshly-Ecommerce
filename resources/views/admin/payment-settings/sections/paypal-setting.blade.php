@@ -58,9 +58,9 @@
                 <div class="form-group">
                     <label>Payment action</label>
                     <select name="payment_action" id="" class="form-control select2">
-                        <option value="Sale" {{ old('payment_action', $paypalSetting->payment_action) === 'Sale' ? 'selected' : '' }}>Sale</option>
-                        <option value="Authorization" {{ old('payment_action', $paypalSetting->payment_action) === 'Authorization' ? 'selected' : '' }}>Authorization</option>
-                        <option value="Order" {{ old('payment_action', $paypalSetting->payment_action) === 'Order' ? 'selected' : '' }}>Order</option>
+                        <option value="Sale" {{ 'payment_action', $paypalSetting->payment_action === 'Sale' ? 'selected' : '' }}>Sale</option>
+                        <option value="Authorization" {{ 'payment_action', $paypalSetting->payment_action === 'Authorization' ? 'selected' : '' }}>Authorization</option>
+                        <option value="Order" {{ 'payment_action', $paypalSetting->payment_action === 'Order' ? 'selected' : '' }}>Order</option>
                     </select>
                 </div>
 

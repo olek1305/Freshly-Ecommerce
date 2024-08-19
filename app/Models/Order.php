@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
  *
  * @property int $id
  * @property string $invoice_id
@@ -19,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $payment_method
  * @property int $payment_status
  * @property string $order_address
- * @property string $shopping_method
+ * @property string $shipping_method
  * @property string $coupon
  * @property string $order_status
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -43,10 +42,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereProductQty($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereShoppingMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereSubTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereShippingMethod($value)
  * @mixin \Eloquent
  */
 class Order extends Model

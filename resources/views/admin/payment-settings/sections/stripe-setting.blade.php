@@ -59,15 +59,15 @@
                     <label>Payment action</label>
                     <select name="payment_action" id="" class="form-control select2">
                         <option
-                            value="Sale" {{ old('payment_action', $stripeSetting->payment_action) === 'Sale' ? 'selected' : '' }}>
+                            value="Sale" {{ 'payment_action', $stripeSetting->payment_action === 'Sale' ? 'selected' : '' }}>
                             Sale
                         </option>
                         <option
-                            value="Authorization" {{ old('payment_action', $stripeSetting->payment_action) === 'Authorization' ? 'selected' : '' }}>
+                            value="Authorization" {{ 'payment_action', $stripeSetting->payment_action === 'Authorization' ? 'selected' : '' }}>
                             Authorization
                         </option>
                         <option
-                            value="Order" {{ old('payment_action', $stripeSetting->payment_action) === 'Order' ? 'selected' : '' }}>
+                            value="Order" {{ 'payment_action', $stripeSetting->payment_action === 'Order' ? 'selected' : '' }}>
                             Order
                         </option>
                     </select>

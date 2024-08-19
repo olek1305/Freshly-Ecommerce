@@ -151,7 +151,7 @@ class PaymentController extends Controller
         $order->payment_method = $paymentMethod;
         $order->payment_status = $paymentStatus;
         $order->order_address = json_encode(Session::get('address'));
-        $order->shopping_method = json_encode(Session::get('shipping_method'));
+        $order->shipping_method = json_encode(Session::get('shipping_method'));
         $order->coupon = json_encode(Session::get('coupon'));
         $order->order_status = 'pending';
         $order->save();

@@ -138,7 +138,19 @@
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
                         <li><a href="contact.html">contact</a></li>
-                        <li><a href="{{ route('login') }}">my account</a></li>
+                        <li>
+                            @if (auth()->check())
+                                @if (auth()->user()->role === 'admin')
+                                    <a href="{{ route('admin.dashboard') }}">admin panel</a>
+                                @elseif (auth()->user()->role === 'vendor')
+                                    <a href="{{ route('vendor.dashboard') }}">vendor panel</a>
+                                @else
+                                    <a href="{{ route('user.dashboard') }}">user panel</a>
+                                @endif
+                            @else
+                                <a href="{{ route('login') }}">my account</a>
+                            @endif
+                        </li>
                         @if (auth()->check())
                             <li>
                                 <form method="POST" action="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">

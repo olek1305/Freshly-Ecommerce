@@ -29,9 +29,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction wherePaymentMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereTransactionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUpdatedAt($value)
+ * @property-read \App\Models\Order|null $order
  * @mixin \Eloquent
  */
 class Transaction extends Model
 {
     use HasFactory;
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
