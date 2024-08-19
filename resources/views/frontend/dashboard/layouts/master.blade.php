@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/ranger_style.css')}}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery.classycountdown.css')}}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/venobox.min.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
 
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css')}}">
@@ -38,7 +39,7 @@
     ==============================-->
     <div class="wsus__dashboard_menu">
         <div class="wsusd__dashboard_user">
-            <img src="images/dashboard_user.jpg" alt="img" class="img-fluid">
+            <img src="{{ asset('frontend/assets/images/dashboard_user.jpg')}}" alt="img" class="img-fluid">
             <p>anik roy</p>
         </div>
     </div>
@@ -69,8 +70,6 @@
 
     <!--jquery library js-->
     <script src="{{ asset('frontend/assets/js/jquery-3.6.0.min.js')}}"></script>
-    <!--bootstrap js-->
-    <script src="{{ asset('frontend/assets/js/bootstrap.bundle.min.js')}}"></script>
     <!--font-awesome js-->
     <script src="{{ asset('frontend/assets/js/Font-Awesome.js')}}"></script>
     <!--select2 js-->
@@ -103,6 +102,9 @@
     <script src="{{ asset('frontend/assets/js/jquery.classycountdown.js')}}"></script>
     <!--sweetalert js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--dataTables js-->
+    <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
 
     <!--main/custom js-->
     <script src="{{ asset('frontend/assets/js/main.js')}}"></script>
