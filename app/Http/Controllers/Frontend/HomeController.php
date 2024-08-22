@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\FlashSale;
 use App\Models\FlashSaleItem;
 use App\Models\HomePageSetting;
@@ -19,6 +20,7 @@ class HomeController extends Controller
         $categoryProductSliderSectionOne = HomePageSetting::where('key', 'product_slider_section_one')->first();
         $categoryProductSliderSectionTwo = HomePageSetting::where('key', 'product_slider_section_two')->first();
         $categoryProductSliderSectionThree = HomePageSetting::where('key', 'product_slider_section_three')->first();
+        $brands = Brand::where('status', 1)->where('is_featured', 1)->get();
 
         return view('frontend.home.home', compact(
             'categoryProductSliderSectionOne',
@@ -28,7 +30,7 @@ class HomeController extends Controller
             'flashSaleItems',
             'popularCategory',
             'sliders',
+            'brands'
         ));
-
     }
 }
