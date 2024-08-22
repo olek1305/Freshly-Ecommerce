@@ -150,6 +150,10 @@
                 @endphp
             @endforeach
         @endif
+
+        $(document).ready(function(){
+            $('.auto_click').click();
+        })
     </script>
     <!--scripts.js from layout-->
     @include('frontend.layouts.scripts')
