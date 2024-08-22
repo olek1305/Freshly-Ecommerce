@@ -44,6 +44,9 @@
                     }
                 },
                 error: function(xhr){
+                    if(xhr.status === 0) {
+                        return;
+                    }
                     let errorMessage = xhr.status + ': ' + xhr.statusText;
                     showToast("error", errorMessage);
                 }
@@ -59,6 +62,9 @@
                     $('#cart-count').text(data);
                 },
                 error: function(xhr){
+                    if(xhr.status === 0) {
+                        return;
+                    }
                     let errorMessage = xhr.status + ': ' + xhr.statusText;
                     showToast("error", errorMessage);
                 }
@@ -101,6 +107,9 @@
                     getSidebarCartSubtotal();
                 },
                 error: function(xhr) {
+                    if(xhr.status === 0) {
+                        return;
+                    }
                     let errorMessage = xhr.status + ': ' + xhr.statusText;
                     showToast("error", errorMessage);
                 }
@@ -131,6 +140,9 @@
                     getSidebarCartSubtotal();
                 },
                 error: function(xhr){
+                    if(xhr.status === 0) {
+                        return;
+                    }
                     let errorMessage = xhr.status + ': ' + xhr.statusText;
                     showToast("error", errorMessage);
                 }
@@ -145,8 +157,12 @@
                 success: function(data){
                     $('#mini_cart_subtotal').text("{{ $settings->currency_icon }}"+data);
                 },
-                error: function(data){
-                    showToast("error", data);
+                error: function(xhr){
+                    if(xhr.status === 0) {
+                        return;
+                    }
+                    let errorMessage = xhr.status + ': ' + xhr.statusText;
+                    showToast("error", errorMessage);
                 }
             });
 
