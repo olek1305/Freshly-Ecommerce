@@ -1,5 +1,10 @@
 @php
-    $popularCategories = json_decode($popularCategory->value, true);
+    // Fetch the slider section data from the database
+    $popularCategories = isset($popularCategory) ? json_decode($popularCategory->value, true) : [
+        'category' => null,
+        'sub_category' => null,
+        'child_category' => null
+    ];
 @endphp
 
 <section id="wsus__monthly_top" class="wsus__monthly_top_2">
