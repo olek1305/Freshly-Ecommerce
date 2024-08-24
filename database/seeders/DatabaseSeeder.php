@@ -25,6 +25,11 @@ class DatabaseSeeder extends Seeder
             VendorShopProfileSeeder::class,
             GeneralSettingSeeder::class,
             PaymentSettingsSeeder::class,
+
+            // for example test
+            CategorySeeder::class,
+            SubCategorySeeder::class,
+            ChildCategorySeeder::class
         ]);
     }
 }
