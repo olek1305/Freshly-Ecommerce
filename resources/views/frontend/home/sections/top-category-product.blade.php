@@ -66,9 +66,9 @@
                                     <div class="wsus__hot_deals__single_text">
                                         <h5>{{ Str::limit($item->name, 20) }}</h5>
                                         <p class="wsus__rating">
-{{--                                            @for ($i = 1; $i <= 5; $i++)--}}
-{{--                                                <i class="{{ $i <= $item->reviews_avg_rating ? 'fas' : 'far' }} fa-star"></i>--}}
-{{--                                            @endfor--}}
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <i class="{{ $i <= $item->reviews_avg_rating ? 'fas' : 'far' }} fa-star"></i>
+                                            @endfor
                                         </p>
                                         @if (checkDiscount($item))
                                             <p class="wsus__tk">
